@@ -3,7 +3,9 @@ public class Product {
     private String title;
     private double price;
 
-    Product(int id, String title, double price){
+    public Product (){};
+
+    public Product(int id, String title, double price){
         this.id = id;
         this.title = title;
         this.price = price;
