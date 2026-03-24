@@ -1,4 +1,11 @@
-package PACKAGE_NAME;
+public class Electro extends Product{
+    private int volt;
 
-public class Electro {
+    Electro(){};
+
+    Electro(int id, String title, double price, String nameProduct,int volt){
+        super(id,title,price,nameProduct);
+        this.volt = volt;
+
+    }
 }
