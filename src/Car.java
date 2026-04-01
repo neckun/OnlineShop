@@ -2,10 +2,9 @@ public class Car extends Product{
 
     private int power;
 
-    Car(){};
 
-    Car(int id, String title, double price, String nameProduct,int power){
-        super(id,title,price,nameProduct);
+    Car(Catalog mainCatalog,int id, String name,String subName, double price, String nameProduct,int power){
+        super(mainCatalog,id,name,subName,price,nameProduct);
         this.power = power;
     }
 

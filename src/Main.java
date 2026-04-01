@@ -1,14 +1,22 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class Main {
     public static void main(String[] args) {
-        Car car1 = new Car(1,"Cars",5000,"Oka",100);
-        Car car2 = new Car(2,"Cars",6000,"Oka 2.0",200);
-        Car car3 = new Car(3,"Cars",7000,"Oka 3.0",300);
+        Catalog mainCatalog = new Catalog();
 
-        Electro el1 = new Electro(4,"Электроника",50,"Разетка",220);
-        Electro el2 = new Electro(5,"Электроника",60,"Разетка 2.0",120);
-        Electro el3 = new Electro(6,"Электроника",70,"Разетка 3.0",20);
+        Car car1 = new Car(mainCatalog,0,"Cars","RusCar",5000,"Oka",200);
+        Car car2 = new Car(mainCatalog,1,"Cars","RusCar",5000,"Oka",200);
+        Car car3 = new Car(mainCatalog,2,"Cars","RusCar",5000,"Oka",200);
+
+        Electro electro1 = new Electro(mainCatalog,3,"Electro","home",2000,"razetka",300);
+        Electro electro2 = new Electro(mainCatalog,4,"Electro","home",2000,"razetka1",300);
+        Electro electro3 = new Electro(mainCatalog,5,"Electro","home",2000,"razetka2",300);
+
+        mainCatalog.showCategory();
     }
 }
+
+/*
+TODO:
+ Добавить SubCategory. Два метода, абстракные, addCategory и ShowCategory.
+ Создать класс Catalog (хранит список основных категорий.
+ Добавить два счётчика, один - кол-во главных категорий, второй - кол-во саб-категорий
+ */

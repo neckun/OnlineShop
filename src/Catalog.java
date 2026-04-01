@@ -1,35 +1,31 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public abstract class Catalog {
-    protected int id;
-    protected String title;
-    protected HashMap<String, ArrayList<Product>> list;
+public class Catalog {
+    protected ArrayList<Category> categoryList = new ArrayList<>();
+
+    protected int countCotegory = 0;
+    protected int countSubCategory = 0;
 
     public Catalog (){};
 
-    public Catalog(int id, String title){
-        this.id = id;
-        this.title = title;
-
+    public Catalog(ArrayList<Category> categoryList){
+        this.categoryList = categoryList;
     }
 
-    public abstract double calculatePrice(int count);
+    public void addCategory(Category newCategory){
+        if(categoryList.contains(newCategory)){
+            countSubCategory++;
+        }
+        else{
+            countCotegory++;
+        }
 
-    public int getId() {
-        return this.id;
+        categoryList.add(newCategory);
     }
 
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+    public void showCategory(){
+        for(Category o : categoryList){
+            System.out.println(o.name);
+        }
     }
 }

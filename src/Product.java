@@ -1,38 +1,21 @@
 import java.util.ArrayList;
 
-public abstract class Product extends Catalog{
+public abstract class Product extends SubCategory{
     protected double price;
     protected String nameProduct;
 
-    Product(){};
+    Product(Catalog mainCatalog,int id, String name,String nameSub, double price, String nameProduct){
 
-    Product(int id, String title, double price, String nameProduct){
-        super(id,title);
+        super(mainCatalog,id,name,nameSub);
         this.price = price;
         this.nameProduct = nameProduct;
 
-        if(list.containsKey(title)){
-            ArrayList<Product> newArr = list.get(title);
-            newArr.add(this);
-
-            list.replace(title,newArr);
-        }
-        else{
-            ArrayList<Product> newArr = new ArrayList<>();
-            newArr.add(this);
-
-            list.put(title,newArr);
-        }
-    }
-
-    @Override
-    public double calculatePrice(int count) {
-        return count * price;
     }
 
     public double getPrice() {
         return this.price;
     }
+
     public void setPrice(double price) {
         this.price = price;
     }
