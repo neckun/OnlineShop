@@ -8,4 +8,8 @@ public class Car extends Product{
         this.power = power;
     }
 
+    @Override
+    public void showInfo() {
+        System.out.println(power);
+    }
 }

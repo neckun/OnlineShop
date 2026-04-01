@@ -6,4 +6,9 @@ public class Electro extends Product{
         this.volt = volt;
 
     }
+
+    @Override
+    public void showInfo() {
+        System.out.println(volt);
+    }
 }

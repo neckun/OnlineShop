@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
         Catalog mainCatalog = new Catalog();
+        ArrayList<Product> productList = new ArrayList<>();
 
         Car car1 = new Car(mainCatalog,0,"Cars","RusCar",5000,"Oka",200);
         Car car2 = new Car(mainCatalog,1,"Cars","RusCar",5000,"Oka",200);
@@ -11,12 +14,27 @@ public class Main {
         Electro electro3 = new Electro(mainCatalog,5,"Electro","home",2000,"razetka2",300);
 
         mainCatalog.showCategory();
+
+        car1.addArrayProduct(productList);
+        car2.addArrayProduct(productList);
+        car3.addArrayProduct(productList);
+
+        electro1.addArrayProduct(productList);
+        electro2.addArrayProduct(productList);
+        electro3.addArrayProduct(productList);
+
+        for(Product o : productList){
+            o.showInfo();
+        }
+
     }
 }
 
 /*
 TODO:
- Добавить SubCategory. Два метода, абстракные, addCategory и ShowCategory.
- Создать класс Catalog (хранит список основных категорий.
- Добавить два счётчика, один - кол-во главных категорий, второй - кол-во саб-категорий
+ в product - showInfo abstract;
+ во все наследники написать ShowInfo;
+ созданные объекты добавить в список
+ добавить метод AddProduct и загрузить в список
+ Вывести список объектов
  */

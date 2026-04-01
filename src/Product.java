@@ -19,4 +19,10 @@ public abstract class Product extends SubCategory{
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public abstract void showInfo();
+
+    public void addArrayProduct(ArrayList<Product> list){
+        list.add(this);
+    }
 }
