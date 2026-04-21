@@ -8,7 +8,7 @@ public class Electro extends Product{
     }
 
     @Override
-    public void showInfo() {
-        System.out.println(volt);
+    public String showInfo() {
+        return Integer.toString(volt);
     }
 }

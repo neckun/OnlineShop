@@ -20,7 +20,7 @@ public abstract class Product extends SubCategory{
         this.price = price;
     }
 
-    public abstract void showInfo();
+    public abstract String showInfo();
 
     public void addArrayProduct(ArrayList<Product> list){
         list.add(this);

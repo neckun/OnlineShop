@@ -9,7 +9,7 @@ public class Car extends Product{
     }
 
     @Override
-    public void showInfo() {
-        System.out.println(power);
+    public String showInfo() {
+        return Integer.toString(power);
     }
 }
