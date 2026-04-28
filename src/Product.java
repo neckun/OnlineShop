@@ -4,12 +4,14 @@ import java.util.Comparator;
 public abstract class Product extends SubCategory implements Comparable<Product>{
     protected double price;
     protected String nameProduct;
+    protected StatusProduct status;
 
-    Product(Catalog mainCatalog,int id, String name,String nameSub, double price, String nameProduct){
+    Product(Catalog mainCatalog,int id, String name,String nameSub, double price, String nameProduct, StatusProduct status){
 
         super(mainCatalog,id,name,nameSub);
         this.price = price;
         this.nameProduct = nameProduct;
+        this.status = status;
 
     }
 
