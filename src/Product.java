@@ -1,17 +1,20 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public abstract class Product extends SubCategory implements Comparable<Product>{
+public abstract class Product implements Comparable<Product>{
     protected double price;
     protected String nameProduct;
     protected StatusProduct status;
+    protected SubCategory subCategory;
 
-    Product(Catalog mainCatalog,int id, String name,String nameSub, double price, String nameProduct, StatusProduct status){
+    Product(double price, String nameProduct, StatusProduct status, SubCategory subCategory){
 
-        super(mainCatalog,id,name,nameSub);
         this.price = price;
         this.nameProduct = nameProduct;
         this.status = status;
+        this.subCategory = subCategory;
+
+        subCategory.addProduct(this);
 
     }
 
@@ -35,7 +38,7 @@ public abstract class Product extends SubCategory implements Comparable<Product>
 
     @Override
     public int compareTo(Product other) {
-        return this.name.compareTo(other.name);
+        return this.nameProduct.compareTo(other.nameProduct);
     }
 
     public static final Comparator<Product> BY_NAMEProduct = Comparator.comparing(Product::getNameProduct);

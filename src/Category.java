@@ -1,8 +1,11 @@
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
-public abstract class Category{
+public class Category{
     protected int id;
     protected String name;
+    private List<SubCategory> listSubsCategor = new ArrayList<>();
 
     Category(Catalog mainCatalog,int id,String name){
 
@@ -14,6 +17,10 @@ public abstract class Category{
 
     public String getCategoryName(){
         return name;
+    }
+
+    public void AddSubCategory(SubCategory o){
+        listSubsCategor.add(o);
     }
 
     public int getId() {

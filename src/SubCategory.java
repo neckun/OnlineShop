@@ -1,10 +1,21 @@
-public abstract class SubCategory extends Category{
+import java.util.ArrayList;
+import java.util.List;
+
+public class SubCategory {
     protected String subName;
+    private List<Product> productList = new ArrayList<>();
 
-    SubCategory(Catalog mainCatalog,int id,String name, String subName){
+    SubCategory(Category mainCategory, String subName){
 
-        super(mainCatalog,id,name);
-        this.name = subName;
+        this.subName = subName;
+        mainCategory.AddSubCategory(this);
+    }
 
+    public void addProduct(Product o){
+        productList.add(o);
+    }
+
+    public String getSubName(){
+        return  subName;
     }
 }

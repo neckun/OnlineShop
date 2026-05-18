@@ -3,38 +3,125 @@ import java.util.Scanner;
 
 public class Menu {
     private ArrayList<Product> productList;
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner scanner;
+    private Client client;
 
-
-    Menu(ArrayList<Product> productList){
+    public Menu(ArrayList<Product> productList, Client client) {
         this.productList = productList;
+        this.scanner = new Scanner(System.in);
+        this.client = client;
     }
 
-    public void showMainWindow(){
-        System.out.println("1: Категории");
-        System.out.println("2: Товары");
-    }
+    public void run() {
+        while (true) {
+            showMainWindow();
+            int choice = input();
 
-    public void showProductOnCategory(){
-        for (Product o : productList){
-            System.out.println(o.nameProduct + " " + o.getCategoryName() + " " + o.price + " " + o.showInfo());
-        }
-    }
-
-    public void showCategory(){
-        ArrayList<String> CategoryNames = new ArrayList<>();
-
-        for(Product o : productList){
-            if(!CategoryNames.contains(o.getCategoryName())) {
-                System.out.println(o.getCategoryName());
-                CategoryNames.add(o.getCategoryName());
+            switch (choice) {
+                case 1:
+                    showCategories();
+                    break;
+                case 2:
+                    showAllProducts();
+                    break;
+                case 3:
+                    buyProduct();
+                    break;
+                case 4:
+                    client.showHistory();
+                    break;
+                case 5:
+                    repayCredit();
+                    break;
+                case 0:
+                    System.out.println("Выход из программы");
+                    return;
+                default:
+                    System.out.println("Неверный выбор. Попробуйте снова.");
             }
         }
     }
 
-    public int Input(){
+    public int input() {
+        while (!scanner.hasNextInt()) {
+            System.out.println("Ошибка! Введите целое число.");
+            scanner.next();
+        }
         int c = scanner.nextInt();
         scanner.nextLine();
         return c;
+    }
+
+    private void showMainWindow() {
+        System.out.println("\n--- Главное меню ---");
+        System.out.println("1: Просмотреть категории");
+        System.out.println("2: Просмотреть все товары");
+        System.out.println("3: Купить товар");
+        System.out.println("4: История операций");
+        System.out.println("5: Погасить кредит");
+        System.out.println("0: Выход");
+        System.out.print("Ваш выбор: ");
+    }
+
+    private void showCategories() {
+        System.out.println("\n--- Категории ---");
+        ArrayList<String> categoryNames = new ArrayList<>();
+
+        for (Product p : productList) {
+            String name = p.subCategory.getSubName();
+            if (!categoryNames.contains(name)) {
+                System.out.println(name);
+                categoryNames.add(name);
+            }
+        }
+    }
+
+    private void showAllProducts() {
+        System.out.println("\n--- Список товаров ---");
+        for (Product p : productList) {
+            System.out.println(p.getNameProduct());
+        }
+    }
+
+    // --- ПОКУПКА ТОВАРА ---
+    private void buyProduct() {
+        System.out.println("\n--- Покупка товара ---");
+        if (productList.isEmpty()) {
+            System.out.println("Товары отсутствуют.");
+            return;
+        }
+
+        System.out.print("Введите точное название товара для покупки: ");
+        String productName = scanner.nextLine();
+
+        for (Product p : productList) {
+            if (p.getNameProduct().equalsIgnoreCase(productName)) {
+                if (client.buy(p)) {
+                    System.out.println("Товар '" + p.getNameProduct() + "' успешно куплен за " + p.getPrice());
+                } else {
+                    System.out.println("Недостаточно средств для покупки товара '" + p.getNameProduct() + "'.");
+                }
+                return;
+            }
+        }
+        System.out.println("Товар с названием '" + productName + "' не найден.");
+    }
+
+    private void repayCredit() {
+        System.out.println("\n--- Погашение кредита ---");
+        System.out.print("Введите сумму для погашения кредита: ");
+
+        if (scanner.hasNextDouble()) {
+            double amount = scanner.nextDouble();
+            if (amount > 0) {
+                client.repayCredit(amount);
+                System.out.println("Погашено: " + amount);
+            } else {
+                System.out.println("Сумма должна быть положительной.");
+            }
+        } else {
+            System.out.println("Неверный ввод. Введите число.");
+            scanner.next();
+        }
     }
 }
