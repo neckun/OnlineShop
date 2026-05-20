@@ -2,14 +2,25 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
+    private static Menu instance;
     private ArrayList<Product> productList;
     private Scanner scanner;
     private Client client;
 
-    public Menu(ArrayList<Product> productList, Client client) {
+    public Menu(){}
+
+    private Menu(ArrayList<Product> productList, Client client) {
+
         this.productList = productList;
-        this.scanner = new Scanner(System.in);
         this.client = client;
+        this.scanner = new Scanner(System.in);
+    }
+
+    public static Menu getInstance(ArrayList<Product> productList, Client client) {
+        if (instance == null){
+            instance = new Menu(productList, client);
+        }
+        return instance;
     }
 
     public void run() {
@@ -83,7 +94,6 @@ public class Menu {
         }
     }
 
-    // --- ПОКУПКА ТОВАРА ---
     private void buyProduct() {
         System.out.println("\n--- Покупка товара ---");
         if (productList.isEmpty()) {

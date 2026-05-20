@@ -1,13 +1,15 @@
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Client {
+final public class Client {
+    final private String name;
     private double debitBalance;
     private double creditLimit;
     private ArrayList<Operation> history;
 
 
-    public Client(double initialDebit, double creditLimit) {
+    public Client(String name,double initialDebit, double creditLimit) {
+        this.name = name;
         this.debitBalance = initialDebit;
         this.creditLimit = creditLimit;
         this.history = new ArrayList<>();
